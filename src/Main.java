@@ -1,12 +1,20 @@
-import java.util.List;
+/**
+ * Main class for the To-Do List Manager application.
+ * Handles user interaction and task management functions.
+ */
 import java.util.Scanner;
-
 public class Main {
     private static ITaskManager taskManager = new TaskManager();
     private static TaskPrinter printer = new TaskPrinter();
     private static PrioritySorter sorter = new PrioritySorter();
     private static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Entry point for the To-Do List Manager application.
+     * Manages user input and invokes corresponding task management methods.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         boolean running = true;
 
@@ -47,6 +55,9 @@ public class Main {
         scanner.close();
     }
 
+    /**
+     * Displays the main menu options to the user.
+     */
     private static void displayMenu() {
         System.out.println("\n==== TO-DO LIST MANAGER ====");
         System.out.println("1. Add a new task");
@@ -59,6 +70,11 @@ public class Main {
         System.out.print("Enter your choice: ");
     }
 
+    /**
+     * Gets the user's menu choice.
+     *
+     * @return The chosen menu option as an integer.
+     */
     private static int getUserChoice() {
         try {
             return Integer.parseInt(scanner.nextLine());
@@ -67,6 +83,9 @@ public class Main {
         }
     }
 
+    /**
+     * Prompts the user to add a new task, including title, description, and priority level.
+     */
     private static void addTask() {
         System.out.println("\n--- Add a New Task ---");
 
@@ -103,6 +122,9 @@ public class Main {
         System.out.println("Task added successfully!");
     }
 
+    /**
+     * Prompts the user to mark a task as completed by entering its ID.
+     */
     private static void markTaskAsCompleted() {
         System.out.println("\n--- Mark Task as Completed ---");
         listAllTasks();
@@ -122,12 +144,19 @@ public class Main {
         }
     }
 
+    /**
+     * Lists all tasks currently in the task manager.
+     */
     private static void listAllTasks() {
         System.out.println("\n--- All Tasks ---");
         List<Task> tasks = taskManager.listAllTasks();
         printer.printTasks(tasks);
     }
 
+    /**
+     * Lists tasks filtered by their completion status.
+     * Allows the user to choose between pending and completed tasks.
+     */
     private static void listTasksByStatus() {
         System.out.println("\n--- List Tasks by Status ---");
         System.out.println("1. Pending tasks");
@@ -152,6 +181,9 @@ public class Main {
         }
     }
 
+    /**
+     * Prompts the user to remove a task by entering its ID.
+     */
     private static void removeTask() {
         System.out.println("\n--- Remove a Task ---");
         listAllTasks();
@@ -171,6 +203,9 @@ public class Main {
         }
     }
 
+    /**
+     * Lists tasks sorted by priority, either in ascending or descending order.
+     */
     private static void listTasksByPriority() {
         System.out.println("\n--- List Tasks by Priority ---");
         System.out.println("1. High to Low priority");
