@@ -1,17 +1,18 @@
 import java.util.UUID;
 
 public class Task {
-    private final String id;
+    private final int id;
     private String title;
     private String description;
     private Priority priority;
     private boolean completed;
+    private static int nextId = 1;
 
     /**
      * Constructor with auto-generated ID
      */
     public Task(String title, String description, Priority priority) {
-        this.id = UUID.randomUUID().toString();
+        this.id = nextId++;
         this.title = title;
         this.description = description;
         this.priority = priority;
@@ -21,7 +22,7 @@ public class Task {
     /**
      * Constructor with provided ID (useful for loading from storage)
      */
-    public Task(String id, String title, String description, Priority priority, boolean completed) {
+    public Task(int id, String title, String description, Priority priority, boolean completed) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -30,7 +31,7 @@ public class Task {
     }
 
     // Getters and setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
